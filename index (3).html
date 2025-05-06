@@ -1,0 +1,2020 @@
+<html class="scroll-smooth" lang="ar" dir="rtl">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   تطبيق إدارة التعلم الإلكتروني
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Cairo', sans-serif;
+    }
+    /* Scrollbar for chat and forums */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #a0aec0;
+      border-radius: 3px;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 min-h-screen flex flex-col text-right">
+  <!-- Root container for SPA -->
+  <div class="flex-grow flex flex-col" id="app">
+   <!-- Navigation Bar -->
+   <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between h-16 items-center">
+      <div class="flex items-center space-x-3 space-x-reverse">
+       <img alt="شعار التعلم الإلكتروني، حروف EL مصممة باللون الأزرق والأبيض" class="h-10 w-10 rounded" height="40" src="https://storage.googleapis.com/a1aa/image/79222963-a7aa-43cd-8ff0-067386babf63.jpg" width="40"/>
+       <a class="text-xl font-semibold text-blue-700 hover:text-blue-900" href="#dashboard">
+        إي-ليرن
+       </a>
+      </div>
+      <div class="hidden md:flex items-center space-x-6 space-x-reverse text-gray-700 font-medium">
+       <a class="hover:text-blue-700 transition" href="#dashboard">
+        الصفحة الرئيسية
+       </a>
+       <a class="hover:text-blue-700 transition" href="#content">
+        المحتوى
+       </a>
+       <a class="hover:text-blue-700 transition" href="#assignments">
+        الواجبات
+       </a>
+       <a class="hover:text-blue-700 transition" href="#communication">
+        التواصل
+       </a>
+       <a class="hover:text-blue-700 transition" href="#grades">
+        الدرجات
+       </a>
+       <a class="hover:text-blue-700 transition" href="#profile">
+        الملف الشخصي
+       </a>
+       <a class="hover:text-blue-700 transition" href="#admin">
+        الإدارة
+       </a>
+       <a class="hover:text-blue-700 transition" href="#help">
+        المساعدة
+       </a>
+      </div>
+      <div class="md:hidden">
+       <button aria-label="تبديل القائمة" class="text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" id="mobile-menu-button">
+        <i class="fas fa-bars fa-lg">
+        </i>
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="hidden md:hidden bg-white border-t border-gray-200" id="mobile-menu">
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#dashboard">
+      الصفحة الرئيسية
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#content">
+      المحتوى
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#assignments">
+      الواجبات
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#communication">
+      التواصل
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#grades">
+      الدرجات
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#profile">
+      الملف الشخصي
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#admin">
+      الإدارة
+     </a>
+     <a class="block px-4 py-2 text-gray-700 hover:bg-blue-50" href="#help">
+      المساعدة
+     </a>
+    </div>
+   </nav>
+   <!-- Main Content Area -->
+   <main class="flex-grow max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-12">
+    <!-- Login / Registration Interface -->
+    <section aria-label="واجهة تسجيل الدخول والتسجيل" class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6" id="login">
+     <h2 class="text-2xl font-semibold text-center mb-6 text-blue-700">
+      تسجيل دخول / إنشاء حساب للطلاب وأعضاء هيئة التدريس
+     </h2>
+     <div class="flex justify-center space-x-4 space-x-reverse mb-6">
+      <button aria-controls="login-form" aria-selected="true" class="px-4 py-2 font-semibold rounded-md bg-blue-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="login-tab" role="tab">
+       تسجيل الدخول
+      </button>
+      <button aria-controls="register-form" aria-selected="false" class="px-4 py-2 font-semibold rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" id="register-tab" role="tab">
+       إنشاء حساب
+      </button>
+     </div>
+     <div>
+      <form aria-labelledby="login-tab" class="space-y-4" id="login-form" role="tabpanel">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="login-email">
+         البريد الإلكتروني
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="login-email" name="login-email" placeholder="you@example.com" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="login-password">
+         كلمة المرور
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="login-password" name="login-password" placeholder="••••••••" required="" type="password"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="login-role">
+         تسجيل الدخول كـ
+        </label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="login-role" name="login-role" required="">
+         <option selected="" value="student">
+          طالب
+         </option>
+         <option value="faculty">
+          عضو هيئة تدريس
+         </option>
+         <option value="admin">
+          مسؤول
+         </option>
+        </select>
+       </div>
+       <button class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+        تسجيل الدخول
+       </button>
+      </form>
+      <form aria-labelledby="register-tab" class="space-y-4 hidden" id="register-form" role="tabpanel">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="register-name">
+         الاسم الكامل
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="register-name" name="register-name" placeholder="أحمد محمد" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="register-email">
+         البريد الإلكتروني
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="register-email" name="register-email" placeholder="you@example.com" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="register-password">
+         كلمة المرور
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="register-password" name="register-password" placeholder="••••••••" required="" type="password"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="register-role">
+         التسجيل كـ
+        </label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="register-role" name="register-role" required="">
+         <option selected="" value="student">
+          طالب
+         </option>
+         <option value="faculty">
+          عضو هيئة تدريس
+         </option>
+        </select>
+       </div>
+       <button class="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+        إنشاء حساب
+       </button>
+      </form>
+     </div>
+    </section>
+    <!-- Dashboard Interface -->
+    <section aria-label="الصفحة الرئيسية - لوحة التحكم" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="dashboard">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      لوحة التحكم
+     </h2>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Course Materials -->
+      <div class="bg-blue-50 rounded-lg p-4 shadow-sm">
+       <h3 class="text-xl font-semibold mb-3 text-blue-800">
+        مواد الدورة
+       </h3>
+       <ul class="list-disc list-inside space-y-1 text-gray-700 max-h-48 overflow-y-auto scrollbar-thin">
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          مقدمة في علم الأحياء - الفصل 1
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الرياضيات - أساسيات الجبر
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          التاريخ - نظرة عامة على الحرب العالمية الثانية
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          علوم الحاسوب - أساسيات البرمجة
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الأدب الإنجليزي - مسرحيات شكسبير
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الفيزياء - قوانين نيوتن
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الكيمياء - الجدول الدوري
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الاقتصاد - العرض والطلب
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الفلسفة - مقدمة في الأخلاق
+         </a>
+        </li>
+        <li>
+         <a class="text-blue-600 hover:underline" href="#content">
+          الفن - أعمال عصر النهضة
+         </a>
+        </li>
+       </ul>
+      </div>
+      <!-- Announcements -->
+      <div class="bg-yellow-50 rounded-lg p-4 shadow-sm">
+       <h3 class="text-xl font-semibold mb-3 text-yellow-800">
+        الإعلانات
+       </h3>
+       <ul class="space-y-3 text-gray-700 max-h-48 overflow-y-auto scrollbar-thin">
+        <li>
+         <p>
+          <strong>
+           10 مايو 2024:
+          </strong>
+          تم نشر واجب جديد لدورة علم الأحياء.
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           8 مايو 2024:
+          </strong>
+          صيانة مجدولة في 15 مايو 2024 من الساعة 2 صباحًا حتى 4 صباحًا.
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           5 مايو 2024:
+          </strong>
+          محاضرة ضيف عن الفن الحديث في 20 مايو 2024.
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           1 مايو 2024:
+          </strong>
+          تبدأ امتحانات منتصف الفصل من 25 مايو 2024.
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           28 أبريل 2024:
+          </strong>
+          مواضيع جديدة في المنتديات متاحة في قسم التواصل.
+         </p>
+        </li>
+       </ul>
+      </div>
+      <!-- Assignments & Grades -->
+      <div class="bg-green-50 rounded-lg p-4 shadow-sm">
+       <h3 class="text-xl font-semibold mb-3 text-green-800">
+        الواجبات والدرجات
+       </h3>
+       <div class="max-h-48 overflow-y-auto scrollbar-thin">
+        <table class="w-full text-left text-gray-700">
+         <thead>
+          <tr class="border-b border-green-300">
+           <th class="py-1 px-2">
+            الواجب
+           </th>
+           <th class="py-1 px-2">
+            تاريخ التسليم
+           </th>
+           <th class="py-1 px-2">
+            الحالة
+           </th>
+           <th class="py-1 px-2">
+            الدرجة
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-b border-green-200">
+           <td class="py-1 px-2">
+            تقرير مختبر الأحياء
+           </td>
+           <td class="py-1 px-2">
+            12 مايو 2024
+           </td>
+           <td class="py-1 px-2 text-yellow-600 font-semibold">
+            قيد الانتظار
+           </td>
+           <td class="py-1 px-2">
+            -
+           </td>
+          </tr>
+          <tr class="border-b border-green-200">
+           <td class="py-1 px-2">
+            اختبار الرياضيات 3
+           </td>
+           <td class="py-1 px-2">
+            5 مايو 2024
+           </td>
+           <td class="py-1 px-2 text-green-700 font-semibold">
+            تم التسليم
+           </td>
+           <td class="py-1 px-2">
+            88%
+           </td>
+          </tr>
+          <tr class="border-b border-green-200">
+           <td class="py-1 px-2">
+            مقال التاريخ
+           </td>
+           <td class="py-1 px-2">
+            15 مايو 2024
+           </td>
+           <td class="py-1 px-2 text-red-600 font-semibold">
+            متأخر
+           </td>
+           <td class="py-1 px-2">
+            -
+           </td>
+          </tr>
+          <tr class="border-b border-green-200">
+           <td class="py-1 px-2">
+            مشروع علوم الحاسوب
+           </td>
+           <td class="py-1 px-2">
+            20 مايو 2024
+           </td>
+           <td class="py-1 px-2 text-yellow-600 font-semibold">
+            قيد الانتظار
+           </td>
+           <td class="py-1 px-2">
+            -
+           </td>
+          </tr>
+          <tr>
+           <td class="py-1 px-2">
+            مراجعة الأدب الإنجليزي
+           </td>
+           <td class="py-1 px-2">
+            18 مايو 2024
+           </td>
+           <td class="py-1 px-2 text-green-700 font-semibold">
+            تم التسليم
+           </td>
+           <td class="py-1 px-2">
+            92%
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </div>
+     <div class="mt-8">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">
+       جدول الحصص
+      </h3>
+      <div class="overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+       <table class="min-w-full bg-white text-gray-700">
+        <thead class="bg-blue-100 text-blue-800 font-semibold">
+         <tr>
+          <th class="py-2 px-4 border-l border-blue-200">
+           الوقت
+          </th>
+          <th class="py-2 px-4 border-l border-blue-200">
+           الإثنين
+          </th>
+          <th class="py-2 px-4 border-l border-blue-200">
+           الثلاثاء
+          </th>
+          <th class="py-2 px-4 border-l border-blue-200">
+           الأربعاء
+          </th>
+          <th class="py-2 px-4 border-l border-blue-200">
+           الخميس
+          </th>
+          <th class="py-2 px-4">
+           الجمعة
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr class="border-t border-blue-200">
+          <td class="py-2 px-4 font-semibold border-l border-blue-200">
+           8:00 - 9:30 ص
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الأحياء
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           فراغ
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الرياضيات
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           فراغ
+          </td>
+          <td class="py-2 px-4 bg-blue-50">
+           التاريخ
+          </td>
+         </tr>
+         <tr class="border-t border-blue-200 bg-blue-50">
+          <td class="py-2 px-4 font-semibold border-l border-blue-200">
+           10:00 - 11:30 ص
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الأدب الإنجليزي
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           علوم الحاسوب
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الأدب الإنجليزي
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           علوم الحاسوب
+          </td>
+          <td class="py-2 px-4">
+           فراغ
+          </td>
+         </tr>
+         <tr class="border-t border-blue-200">
+          <td class="py-2 px-4 font-semibold border-l border-blue-200">
+           1:00 - 2:30 م
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الفيزياء
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الكيمياء
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الفيزياء
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الكيمياء
+          </td>
+          <td class="py-2 px-4 bg-blue-50">
+           الاقتصاد
+          </td>
+         </tr>
+         <tr class="border-t border-blue-200 bg-blue-50">
+          <td class="py-2 px-4 font-semibold border-l border-blue-200">
+           3:00 - 4:30 م
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الفلسفة
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الفن
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200">
+           الفلسفة
+          </td>
+          <td class="py-2 px-4 border-l border-blue-200 bg-blue-50">
+           الفن
+          </td>
+          <td class="py-2 px-4">
+           فراغ
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </div>
+    </section>
+    <!-- Educational Content Interface -->
+    <section aria-label="واجهة المحتوى التعليمي" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="content">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      المحتوى التعليمي
+     </h2>
+     <div class="flex flex-col md:flex-row gap-6">
+      <!-- Content List -->
+      <nav aria-label="قائمة الدروس" class="md:w-1/3 bg-gray-50 rounded-lg p-4 shadow-inner max-h-[600px] overflow-y-auto scrollbar-thin">
+       <h3 class="text-xl font-semibold mb-4 text-gray-800">
+        الدروس
+       </h3>
+       <ul class="space-y-3 text-gray-700">
+        <li>
+         <button class="lesson-item w-full text-right px-3 py-2 rounded-md hover:bg-blue-100 focus:outline-none focus:bg-blue-200" data-content="علم الأحياء هو دراسة الكائنات الحية. يغطي هذا الدرس أساسيات بنية الخلية، والحمض النووي، وعلم الوراثة." data-title="مقدمة في علم الأحياء" data-type="text">
+          مقدمة في علم الأحياء (نص)
+         </button>
+        </li>
+        <li>
+         <button class="lesson-item w-full text-right px-3 py-2 rounded-md hover:bg-blue-100 focus:outline-none focus:bg-blue-200" data-content="https://placehold.co/600x340?text=عينة+فيديو+أساسيات+الجبر" data-title="الرياضيات - أساسيات الجبر" data-type="video">
+          الرياضيات - أساسيات الجبر (فيديو)
+         </button>
+        </li>
+        <li>
+         <button class="lesson-item w-full text-right px-3 py-2 rounded-md hover:bg-blue-100 focus:outline-none focus:bg-blue-200" data-content="https://placehold.co/600x80?text=عينة+صوتية+نظرة+عامة+على+الحرب+العالمية+الثانية" data-title="التاريخ - نظرة عامة على الحرب العالمية الثانية" data-type="audio">
+          التاريخ - نظرة عامة على الحرب العالمية الثانية (صوت)
+         </button>
+        </li>
+        <li>
+         <button class="lesson-item w-full text-right px-3 py-2 rounded-md hover:bg-blue-100 focus:outline-none focus:bg-blue-200" data-content="تشمل أساسيات البرمجة المتغيرات، الحلقات، والدوال. يقدم هذا الدرس هذه المفاهيم مع أمثلة." data-title="علوم الحاسوب - أساسيات البرمجة" data-type="text">
+          علوم الحاسوب - أساسيات البرمجة (نص)
+         </button>
+        </li>
+        <li>
+         <button class="lesson-item w-full text-right px-3 py-2 rounded-md hover:bg-blue-100 focus:outline-none focus:bg-blue-200" data-content="https://placehold.co/600x340?text=عينة+فيديو+مسرحيات+شكسبير" data-title="الأدب الإنجليزي - مسرحيات شكسبير" data-type="video">
+          الأدب الإنجليزي - مسرحيات شكسبير (فيديو)
+         </button>
+        </li>
+       </ul>
+      </nav>
+      <!-- Content Display and Interaction -->
+      <article aria-atomic="true" aria-live="polite" class="md:w-2/3 bg-white rounded-lg shadow-md p-6 flex flex-col">
+       <h3 class="text-2xl font-semibold text-gray-800 mb-4" id="lesson-title">
+        اختر درسًا لعرض المحتوى
+       </h3>
+       <div class="flex-grow overflow-y-auto max-h-[600px] scrollbar-thin border border-gray-300 rounded-md p-4 bg-gray-50" id="lesson-content">
+        <p class="text-gray-600">
+         لم يتم اختيار درس بعد.
+        </p>
+       </div>
+       <div class="mt-4" id="interaction-area">
+        <h4 class="text-lg font-semibold mb-2 text-gray-700">
+         ملاحظاتك
+        </h4>
+        <textarea class="w-full rounded-md border border-gray-300 p-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-400" id="lesson-notes" placeholder="اكتب ملاحظاتك هنا..." rows="6"></textarea>
+        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" id="save-notes">
+         حفظ الملاحظات
+        </button>
+       </div>
+      </article>
+     </div>
+    </section>
+    <!-- Assignments and Tests Interface -->
+    <section aria-label="واجهة الواجبات والاختبارات" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="assignments">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      الواجبات والاختبارات
+     </h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Assignments List -->
+      <div>
+       <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+        الواجبات
+       </h3>
+       <ul class="space-y-4 max-h-[500px] overflow-y-auto scrollbar-thin">
+        <li class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+         <h4 class="font-semibold text-lg text-gray-900">
+          تقرير مختبر الأحياء
+         </h4>
+         <p class="text-gray-700 mb-2">
+          تاريخ التسليم: 12 مايو 2024
+         </p>
+         <p class="text-gray-700 mb-2">
+          الوصف: اكتب تقريرًا مفصلًا عن تجربة بنية الخلية.
+         </p>
+         <form aria-label="تقديم واجب تقرير مختبر الأحياء" class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700" for="bio-lab-file">
+           ارفع تقريرك (PDF):
+          </label>
+          <input accept=".pdf" class="block w-full text-gray-700" id="bio-lab-file" name="bio-lab-file" type="file"/>
+          <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+           تقديم الواجب
+          </button>
+         </form>
+        </li>
+        <li class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+         <h4 class="font-semibold text-lg text-gray-900">
+          مقال التاريخ
+         </h4>
+         <p class="text-gray-700 mb-2">
+          تاريخ التسليم: 15 مايو 2024
+         </p>
+         <p class="text-gray-700 mb-2">
+          الوصف: اكتب مقالًا عن أسباب الحرب العالمية الثانية.
+         </p>
+         <form aria-label="تقديم واجب مقال التاريخ" class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700" for="history-essay-file">
+           ارفع مقالك (DOCX أو PDF):
+          </label>
+          <input accept=".docx,.pdf" class="block w-full text-gray-700" id="history-essay-file" name="history-essay-file" type="file"/>
+          <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+           تقديم الواجب
+          </button>
+         </form>
+        </li>
+        <li class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+         <h4 class="font-semibold text-lg text-gray-900">
+          مشروع علوم الحاسوب
+         </h4>
+         <p class="text-gray-700 mb-2">
+          تاريخ التسليم: 20 مايو 2024
+         </p>
+         <p class="text-gray-700 mb-2">
+          الوصف: أنشئ تطبيق ويب بسيط باستخدام HTML وCSS وJavaScript.
+         </p>
+         <form aria-label="تقديم مشروع علوم الحاسوب" class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700" for="cs-project-file">
+           ارفع ملفات المشروع (ZIP):
+          </label>
+          <input accept=".zip" class="block w-full text-gray-700" id="cs-project-file" name="cs-project-file" type="file"/>
+          <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+           تقديم الواجب
+          </button>
+         </form>
+        </li>
+       </ul>
+      </div>
+      <!-- Online Tests -->
+      <div>
+       <h3 class="text-2xl font-semibold mb-4 text-gray-800">
+        الاختبارات الإلكترونية
+       </h3>
+       <div class="space-y-6 max-h-[500px] overflow-y-auto scrollbar-thin">
+        <article aria-label="اختبار الرياضيات 3" class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+         <h4 class="font-semibold text-lg text-gray-900 mb-2">
+          اختبار الرياضيات 3
+         </h4>
+         <p class="text-gray-700 mb-4">
+          المدة: 30 دقيقة
+         </p>
+         <form aria-atomic="true" aria-live="polite">
+          <fieldset class="mb-4">
+           <legend class="font-semibold text-gray-800 mb-2">
+            1. ما هو 5 + 7؟
+           </legend>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="q1" type="radio" value="10"/>
+            <span class="mr-2">
+             10
+            </span>
+           </label>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="q1" type="radio" value="12"/>
+            <span class="mr-2">
+             12
+            </span>
+           </label>
+           <label class="inline-flex items-center">
+            <input class="form-radio text-blue-600" name="q1" type="radio" value="14"/>
+            <span class="mr-2">
+             14
+            </span>
+           </label>
+          </fieldset>
+          <fieldset class="mb-4">
+           <legend class="font-semibold text-gray-800 mb-2">
+            2. حل لـ x: 2x = 10
+           </legend>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="q2" type="radio" value="2"/>
+            <span class="mr-2">
+             2
+            </span>
+           </label>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="q2" type="radio" value="5"/>
+            <span class="mr-2">
+             5
+            </span>
+           </label>
+           <label class="inline-flex items-center">
+            <input class="form-radio text-blue-600" name="q2" type="radio" value="10"/>
+            <span class="mr-2">
+             10
+            </span>
+           </label>
+          </fieldset>
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+           إرسال الاختبار
+          </button>
+         </form>
+        </article>
+        <article aria-label="اختبار منتصف الفصل في الفيزياء" class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+         <h4 class="font-semibold text-lg text-gray-900 mb-2">
+          اختبار منتصف الفصل في الفيزياء
+         </h4>
+         <p class="text-gray-700 mb-4">
+          المدة: 60 دقيقة
+         </p>
+         <form aria-atomic="true" aria-live="polite">
+          <fieldset class="mb-4">
+           <legend class="font-semibold text-gray-800 mb-2">
+            1. ما هو قانون نيوتن الثاني؟
+           </legend>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="p1" type="radio" value="F=ma"/>
+            <span class="mr-2">
+             F = ma
+            </span>
+           </label>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="p1" type="radio" value="E=mc2"/>
+            <span class="mr-2">
+             E = mc²
+            </span>
+           </label>
+           <label class="inline-flex items-center">
+            <input class="form-radio text-blue-600" name="p1" type="radio" value="V=IR"/>
+            <span class="mr-2">
+             V = IR
+            </span>
+           </label>
+          </fieldset>
+          <fieldset class="mb-4">
+           <legend class="font-semibold text-gray-800 mb-2">
+            2. ما هي وحدة القوة؟
+           </legend>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="p2" type="radio" value="Newton"/>
+            <span class="mr-2">
+             نيوتن
+            </span>
+           </label>
+           <label class="inline-flex items-center ml-4">
+            <input class="form-radio text-blue-600" name="p2" type="radio" value="Joule"/>
+            <span class="mr-2">
+             جول
+            </span>
+           </label>
+           <label class="inline-flex items-center">
+            <input class="form-radio text-blue-600" name="p2" type="radio" value="Watt"/>
+            <span class="mr-2">
+             واط
+            </span>
+           </label>
+          </fieldset>
+          <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+           إرسال الاختبار
+          </button>
+         </form>
+        </article>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- Communication Interface -->
+    <section aria-label="واجهة التواصل" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="communication">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      التواصل
+     </h2>
+     <div class="flex flex-col md:flex-row gap-6">
+      <!-- Chat with Instructor -->
+      <div class="md:w-1/3 bg-gray-50 rounded-lg p-4 shadow-inner flex flex-col max-h-[600px]">
+       <h3 class="text-xl font-semibold mb-4 text-gray-800">
+        الدردشة مع المدرس
+       </h3>
+       <div aria-live="polite" aria-relevant="additions" class="flex-grow overflow-y-auto scrollbar-thin border border-gray-300 rounded-md p-3 bg-white mb-4" id="chat-window" role="log" tabindex="0">
+        <div class="mb-3">
+         <p class="text-sm text-gray-600">
+          <strong>
+           المدرس:
+          </strong>
+          مرحبًا بكم في الدورة! لا تترددوا في طرح أي أسئلة.
+         </p>
+        </div>
+        <div class="mb-3 text-left">
+         <p class="text-sm text-blue-700">
+          <strong>
+           أنت:
+          </strong>
+          شكرًا! أتطلع إلى التعلم.
+         </p>
+        </div>
+        <div class="mb-3">
+         <p class="text-sm text-gray-600">
+          <strong>
+           المدرس:
+          </strong>
+          لا تنسوا التحقق من قسم الواجبات.
+         </p>
+        </div>
+       </div>
+       <form aria-label="إرسال رسالة إلى المدرس" class="flex space-x-2 space-x-reverse" id="chat-form">
+        <input class="flex-grow rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" id="chat-input" placeholder="اكتب رسالتك..." type="text"/>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+         إرسال
+        </button>
+       </form>
+      </div>
+      <!-- Forums -->
+      <div class="md:w-2/3 bg-gray-50 rounded-lg p-4 shadow-inner max-h-[600px] flex flex-col">
+       <h3 class="text-xl font-semibold mb-4 text-gray-800">
+        المنتديات
+       </h3>
+       <div aria-atomic="true" aria-live="polite" class="flex-grow overflow-y-auto scrollbar-thin border border-gray-300 rounded-md p-4 bg-white mb-4" id="forum-posts" role="region" tabindex="0">
+        <article class="mb-4 border-b border-gray-200 pb-3">
+         <h4 class="font-semibold text-gray-900">
+          سؤال حول الواجب 1
+         </h4>
+         <p class="text-gray-700 mb-1">
+          هل يمكن لأحد شرح متطلبات تقرير مختبر الأحياء؟
+         </p>
+         <p class="text-sm text-gray-500">
+          نشر بواسطة طالب123 في 9 مايو 2024
+         </p>
+        </article>
+        <article class="mb-4 border-b border-gray-200 pb-3">
+         <h4 class="font-semibold text-gray-900">
+          نصائح لاختبار الرياضيات
+         </h4>
+         <p class="text-gray-700 mb-1">
+          تدرب على مسائل الجبر من اختبارات السنوات السابقة.
+         </p>
+         <p class="text-sm text-gray-500">
+          نشر بواسطة خبير_رياضيات في 7 مايو 2024
+         </p>
+        </article>
+        <article class="mb-4 border-b border-gray-200 pb-3">
+         <h4 class="font-semibold text-gray-900">
+          تشكيل مجموعة دراسة
+         </h4>
+         <p class="text-gray-700 mb-1">
+          أبحث عن أعضاء لتشكيل مجموعة دراسة لاختبار الفيزياء.
+         </p>
+         <p class="text-sm text-gray-500">
+          نشر بواسطة فيزياء_معجب في 6 مايو 2024
+         </p>
+        </article>
+       </div>
+       <form aria-label="نشر موضوع جديد في المنتدى" class="flex flex-col space-y-2" id="forum-form">
+        <textarea class="rounded-md border border-gray-300 p-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-400" id="forum-input" placeholder="اكتب منشورًا جديدًا في المنتدى..." rows="3"></textarea>
+        <button class="self-start px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+         نشر
+        </button>
+       </form>
+      </div>
+     </div>
+    </section>
+    <!-- Grades and Reports Interface -->
+    <section aria-label="واجهة الدرجات والتقارير" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="grades">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      الدرجات والتقارير
+     </h2>
+     <div class="overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+      <table class="min-w-full bg-white text-gray-700">
+       <thead class="bg-green-100 text-green-800 font-semibold">
+        <tr>
+         <th class="py-3 px-6 border-l border-green-300">
+          الدورة
+         </th>
+         <th class="py-3 px-6 border-l border-green-300">
+          الواجب / الاختبار
+         </th>
+         <th class="py-3 px-6 border-l border-green-300">
+          الدرجة
+         </th>
+         <th class="py-3 px-6 border-l border-green-300">
+          الملاحظات
+         </th>
+         <th class="py-3 px-6">
+          تاريخ التقييم
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="border-t border-green-200 hover:bg-green-50">
+         <td class="py-3 px-6 border-l border-green-200 font-semibold">
+          الأحياء
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          تقرير المختبر 1
+         </td>
+         <td class="py-3 px-6 border-l border-green-200 text-green-700 font-semibold">
+          85%
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          تحليل جيد، لكن ينقصه بعض التفاصيل.
+         </td>
+         <td class="py-3 px-6">
+          13 مايو 2024
+         </td>
+        </tr>
+        <tr class="border-t border-green-200 hover:bg-green-50 bg-green-50">
+         <td class="py-3 px-6 border-l border-green-200 font-semibold">
+          الرياضيات
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          اختبار 3
+         </td>
+         <td class="py-3 px-6 border-l border-green-200 text-green-700 font-semibold">
+          88%
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          عمل جيد!
+         </td>
+         <td class="py-3 px-6">
+          6 مايو 2024
+         </td>
+        </tr>
+        <tr class="border-t border-green-200 hover:bg-green-50">
+         <td class="py-3 px-6 border-l border-green-200 font-semibold">
+          الأدب الإنجليزي
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          مراجعة الأدب
+         </td>
+         <td class="py-3 px-6 border-l border-green-200 text-green-700 font-semibold">
+          92%
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          رؤى وأسلوب كتابة ممتاز.
+         </td>
+         <td class="py-3 px-6">
+          19 مايو 2024
+         </td>
+        </tr>
+        <tr class="border-t border-green-200 hover:bg-green-50 bg-green-50">
+         <td class="py-3 px-6 border-l border-green-200 font-semibold">
+          الفيزياء
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          اختبار منتصف الفصل
+         </td>
+         <td class="py-3 px-6 border-l border-green-200 text-yellow-700 font-semibold">
+          78%
+         </td>
+         <td class="py-3 px-6 border-l border-green-200">
+          بحاجة لتحسين في الصيغ.
+         </td>
+         <td class="py-3 px-6">
+          21 مايو 2024
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="mt-8">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">
+       تقارير الأداء
+      </h3>
+      <div class="bg-gray-50 rounded-lg p-4 shadow-inner max-h-64 overflow-y-auto scrollbar-thin text-gray-700">
+       <p>
+        <strong>
+         المعدل التراكمي العام:
+        </strong>
+        3.6
+       </p>
+       <p>
+        <strong>
+         الساعات المكتملة:
+        </strong>
+        45
+       </p>
+       <p>
+        <strong>
+         الدورات الجارية:
+        </strong>
+        الأحياء، علوم الحاسوب، الاقتصاد
+       </p>
+       <p>
+        <strong>
+         مجالات للتحسين:
+        </strong>
+        الفيزياء، التاريخ
+       </p>
+       <p>
+        <strong>
+         الملاحظات الأخيرة:
+        </strong>
+        استمر في العمل الجيد في الرياضيات والأدب الإنجليزي.
+       </p>
+      </div>
+     </div>
+    </section>
+    <!-- Profile Interface -->
+    <section aria-label="واجهة الملف الشخصي" class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6" id="profile">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      الملف الشخصي
+     </h2>
+     <form aria-atomic="true" aria-live="polite" class="space-y-6">
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="profile-name">
+        الاسم الكامل
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="profile-name" name="profile-name" type="text" value="أحمد محمد"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="profile-email">
+        البريد الإلكتروني
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="profile-email" name="profile-email" type="email" value="ahmed.mohamed@example.com"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="profile-phone">
+        رقم الهاتف
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="profile-phone" name="profile-phone" type="tel" value="+966 555 123 4567"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="profile-password">
+        تغيير كلمة المرور
+       </label>
+       <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="profile-password" name="profile-password" placeholder="••••••••" type="password"/>
+      </div>
+      <button class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+       حفظ التغييرات
+      </button>
+     </form>
+    </section>
+    <!-- Faculty Interfaces -->
+    <section aria-label="واجهات أعضاء هيئة التدريس" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="faculty">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      واجهات أعضاء هيئة التدريس
+     </h2>
+     <!-- Faculty Login Interface -->
+     <article aria-label="واجهة تسجيل دخول أعضاء هيئة التدريس" class="max-w-md mx-auto bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="faculty-login">
+      <h3 class="text-2xl font-semibold mb-4 text-blue-800">
+       تسجيل دخول أعضاء هيئة التدريس
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-4">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="faculty-email">
+         البريد الإلكتروني
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="faculty-email" name="faculty-email" placeholder="faculty@example.com" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="faculty-password">
+         كلمة المرور
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="faculty-password" name="faculty-password" placeholder="••••••••" required="" type="password"/>
+       </div>
+       <button class="w-full py-2 px-4 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600" type="submit">
+        تسجيل الدخول
+       </button>
+      </form>
+     </article>
+     <!-- Teacher Control Panel -->
+     <article aria-label="لوحة تحكم المعلم" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="teacher-control-panel">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       لوحة تحكم المعلم
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-700">
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         مواد الدورة
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          الأحياء - الفصل 1
+         </li>
+         <li>
+          الرياضيات - الجبر
+         </li>
+         <li>
+          التاريخ - الحرب العالمية الثانية
+         </li>
+         <li>
+          علوم الحاسوب - الأساسيات
+         </li>
+         <li>
+          الأدب الإنجليزي - شكسبير
+         </li>
+        </ul>
+       </div>
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         إدارة الطلاب
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          أحمد محمد
+         </li>
+         <li>
+          سارة علي
+         </li>
+         <li>
+          محمد حسن
+         </li>
+         <li>
+          ليلى عبد الله
+         </li>
+         <li>
+          خالد يوسف
+         </li>
+        </ul>
+       </div>
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         الواجبات والاختبارات
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          تقرير مختبر الأحياء
+         </li>
+         <li>
+          اختبار الرياضيات 3
+         </li>
+         <li>
+          مقال التاريخ
+         </li>
+         <li>
+          مشروع علوم الحاسوب
+         </li>
+         <li>
+          اختبار منتصف الفصل في الفيزياء
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="mt-6">
+       <button class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+        إنشاء واجب جديد
+       </button>
+       <button class="ml-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        مراقبة الأداء
+       </button>
+      </div>
+     </article>
+     <!-- Educational Content Creation and Editing Interface -->
+     <article aria-label="واجهة إنشاء وتحرير المحتوى التعليمي" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="content-creation">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       إنشاء وتحرير المحتوى
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-6">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="content-title">
+         العنوان
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="content-title" name="content-title" placeholder="عنوان الدرس" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="content-type">
+         نوع المحتوى
+        </label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="content-type" name="content-type" required="">
+         <option selected="" value="text">
+          نص
+         </option>
+         <option value="video">
+          فيديو
+         </option>
+         <option value="audio">
+          صوت
+         </option>
+         <option value="file">
+          ملف
+         </option>
+        </select>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="content-body">
+         محتوى الدرس / الرابط
+        </label>
+        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="content-body" name="content-body" placeholder="أدخل نص المحتوى أو رابط الفيديو/الصوت/الملف" required="" rows="6"></textarea>
+       </div>
+       <button class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+        نشر المحتوى
+       </button>
+      </form>
+     </article>
+     <!-- Assignment and Test Management Interface -->
+     <article aria-label="واجهة إدارة الواجبات والاختبارات" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="assignment-management">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       إدارة الواجبات والاختبارات
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-6">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="assignment-title">
+         العنوان
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="assignment-title" name="assignment-title" placeholder="عنوان الواجب أو الاختبار" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="assignment-description">
+         الوصف
+        </label>
+        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="assignment-description" name="assignment-description" placeholder="وصف الواجب أو الاختبار" required="" rows="4"></textarea>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="assignment-due">
+         تاريخ التسليم
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="assignment-due" name="assignment-due" required="" type="date"/>
+       </div>
+       <button class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+        إنشاء / تحديث
+       </button>
+      </form>
+      <div class="mt-6">
+       <h4 class="text-xl font-semibold mb-3 text-blue-700">
+        الواجبات المقدمة
+       </h4>
+       <ul class="max-h-48 overflow-y-auto scrollbar-thin space-y-2 text-gray-700 border border-gray-300 rounded-md p-3 bg-white">
+        <li>
+         <p>
+          <strong>
+           أحمد محمد
+          </strong>
+          - تقرير مختبر الأحياء - تم التقديم في 11 مايو 2024 -
+          <button class="text-blue-600 hover:underline">
+           تقييم
+          </button>
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           سارة علي
+          </strong>
+          - مقال التاريخ - تم التقديم في 14 مايو 2024 -
+          <button class="text-blue-600 hover:underline">
+           تقييم
+          </button>
+         </p>
+        </li>
+        <li>
+         <p>
+          <strong>
+           محمد حسن
+          </strong>
+          - مشروع علوم الحاسوب - تم التقديم في 19 مايو 2024 -
+          <button class="text-blue-600 hover:underline">
+           تقييم
+          </button>
+         </p>
+        </li>
+       </ul>
+      </div>
+     </article>
+     <!-- Student Communication Interface -->
+     <article aria-label="واجهة تواصل الطلاب" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="faculty-communication">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       تواصل الطلاب
+      </h3>
+      <div aria-atomic="true" aria-live="polite" class="max-h-[400px] overflow-y-auto scrollbar-thin border border-gray-300 rounded-md p-4 bg-white mb-4" role="log" tabindex="0">
+       <div class="mb-3">
+        <p class="text-sm text-gray-600">
+         <strong>
+          طالب123:
+         </strong>
+         هل يمكنك توضيح متطلبات تقرير المختبر؟
+        </p>
+       </div>
+       <div class="mb-3 text-left">
+        <p class="text-sm text-blue-700">
+         <strong>
+          عضو هيئة التدريس:
+         </strong>
+         بالتأكيد! يرجى الرجوع إلى وثيقة المنهج المرفوعة في قسم المحتوى.
+        </p>
+       </div>
+       <div class="mb-3">
+        <p class="text-sm text-gray-600">
+         <strong>
+          طالب456:
+         </strong>
+         متى موعد الاختبار القادم؟
+        </p>
+       </div>
+       <div class="mb-3 text-left">
+        <p class="text-sm text-blue-700">
+         <strong>
+          عضو هيئة التدريس:
+         </strong>
+         اختبار منتصف الفصل مقرر في 25 مايو 2024.
+        </p>
+       </div>
+      </div>
+      <form aria-label="إرسال رسالة إلى الطلاب" class="flex space-x-2 space-x-reverse" id="faculty-chat-form">
+       <input class="flex-grow rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" id="faculty-chat-input" placeholder="اكتب رسالتك..." type="text"/>
+       <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+        إرسال
+       </button>
+      </form>
+     </article>
+     <!-- Performance Reports Viewing Interface -->
+     <article aria-label="واجهة عرض تقارير الأداء" class="bg-gray-50 rounded-lg p-6 shadow-inner" id="performance-reports">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       تقارير الأداء
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+       <div class="bg-white rounded-lg shadow p-4 max-h-64 overflow-y-auto scrollbar-thin">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         أداء الطلاب
+        </h4>
+        <ul class="list-disc list-inside space-y-2">
+         <li>
+          أحمد محمد: معدل تراكمي 3.6، قوة في الرياضيات والأدب
+         </li>
+         <li>
+          سارة علي: معدل تراكمي 3.8، ممتازة في الأحياء
+         </li>
+         <li>
+          محمد حسن: معدل تراكمي 3.2، بحاجة لتحسين في الفيزياء
+         </li>
+         <li>
+          ليلى عبد الله: معدل تراكمي 3.9، متميزة في علوم الحاسوب
+         </li>
+         <li>
+          خالد يوسف: معدل تراكمي 3.4، جيد في التاريخ والفلسفة
+         </li>
+        </ul>
+       </div>
+       <div class="bg-white rounded-lg shadow p-4 max-h-64 overflow-y-auto scrollbar-thin">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         تقارير المواد الدراسية
+        </h4>
+        <ul class="list-disc list-inside space-y-2">
+         <li>
+          الأحياء: متوسط الدرجة 85%
+         </li>
+         <li>
+          الرياضيات: متوسط الدرجة 88%
+         </li>
+         <li>
+          التاريخ: متوسط الدرجة 80%
+         </li>
+         <li>
+          علوم الحاسوب: متوسط الدرجة 90%
+         </li>
+         <li>
+          الفيزياء: متوسط الدرجة 78%
+         </li>
+        </ul>
+       </div>
+      </div>
+     </article>
+    </section>
+    <!-- Administrator Interfaces -->
+    <section aria-label="واجهات المسؤول" class="max-w-7xl mx-auto bg-white rounded-lg shadow-md p-6" id="admin">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      واجهات المسؤول
+     </h2>
+     <!-- Admin Login Interface -->
+     <article aria-label="واجهة تسجيل دخول المسؤول" class="max-w-md mx-auto bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="admin-login">
+      <h3 class="text-2xl font-semibold mb-4 text-blue-800">
+       تسجيل دخول المسؤول
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-4">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="admin-email">
+         البريد الإلكتروني
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="admin-email" name="admin-email" placeholder="admin@example.com" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="admin-password">
+         كلمة المرور
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="admin-password" name="admin-password" placeholder="••••••••" required="" type="password"/>
+       </div>
+       <button class="w-full py-2 px-4 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600" type="submit">
+        تسجيل الدخول
+       </button>
+      </form>
+     </article>
+     <!-- Administration Dashboard -->
+     <article aria-label="لوحة تحكم الإدارة" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="admin-dashboard">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       لوحة تحكم الإدارة
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-700">
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         إدارة المستخدمين
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          الطلاب: 1200
+         </li>
+         <li>
+          أعضاء هيئة التدريس: 75
+         </li>
+         <li>
+          المسؤولون: 5
+         </li>
+        </ul>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+         إنشاء / تعديل الحسابات
+        </button>
+       </div>
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         إدارة مواد الدورة
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          الأحياء
+         </li>
+         <li>
+          الرياضيات
+         </li>
+         <li>
+          التاريخ
+         </li>
+         <li>
+          علوم الحاسوب
+         </li>
+         <li>
+          الأدب الإنجليزي
+         </li>
+        </ul>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+         تعديل المواد
+        </button>
+       </div>
+       <div class="bg-white rounded-lg shadow p-4">
+        <h4 class="font-semibold mb-3 text-blue-700">
+         التقارير
+        </h4>
+        <ul class="list-disc list-inside space-y-1 max-h-40 overflow-y-auto scrollbar-thin">
+         <li>
+          أداء الطلاب
+         </li>
+         <li>
+          أداء المعلمين
+         </li>
+         <li>
+          استخدام النظام
+         </li>
+        </ul>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+         عرض التقارير
+        </button>
+       </div>
+      </div>
+     </article>
+     <!-- Account Management Interface -->
+     <article aria-label="واجهة إدارة الحسابات" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="account-management">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       إدارة الحسابات
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-6">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="user-role">
+         دور المستخدم
+        </label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="user-role" name="user-role" required="">
+         <option selected="" value="student">
+          طالب
+         </option>
+         <option value="faculty">
+          عضو هيئة تدريس
+         </option>
+         <option value="admin">
+          مسؤول
+         </option>
+        </select>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="user-name">
+         الاسم الكامل
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="user-name" name="user-name" placeholder="الاسم الكامل" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="user-email">
+         البريد الإلكتروني
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="user-email" name="user-email" placeholder="email@example.com" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="user-permissions">
+         الأذونات
+        </label>
+        <select aria-describedby="permissions-help" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="user-permissions" multiple="" name="user-permissions">
+         <option selected="" value="read">
+          قراءة
+         </option>
+         <option value="write">
+          كتابة
+         </option>
+         <option value="grade">
+          تقييم
+         </option>
+         <option value="admin">
+          إدارة
+         </option>
+        </select>
+        <p class="text-xs text-gray-500 mt-1" id="permissions-help">
+         اضغط Ctrl (أو Cmd على ماك) لاختيار أذونات متعددة.
+        </p>
+       </div>
+       <button class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+        إنشاء / تحديث الحساب
+       </button>
+      </form>
+     </article>
+     <!-- Report Management Interface -->
+     <article aria-label="واجهة إدارة التقارير" class="bg-gray-50 rounded-lg p-6 shadow-inner mb-12" id="report-management">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       إدارة التقارير
+      </h3>
+      <div class="max-h-64 overflow-y-auto scrollbar-thin text-gray-700 bg-white rounded-md border border-gray-300 p-4">
+       <h4 class="font-semibold mb-3">
+        تقارير شاملة
+       </h4>
+       <ul class="list-disc list-inside space-y-2">
+        <li>
+         <strong>
+          أداء الطلاب:
+         </strong>
+         معدل تراكمي 3.5، معدل إكمال الدورات 85%.
+        </li>
+        <li>
+         <strong>
+          أداء المعلمين:
+         </strong>
+         تقييم متوسط 4.3/5، 95% من الواجبات تم تقييمها في الوقت المحدد.
+        </li>
+        <li>
+         <strong>
+          استخدام النظام:
+         </strong>
+         ساعات الذروة من 8 صباحًا حتى 10 مساءً، 1500 مستخدم نشط يوميًا.
+        </li>
+        <li>
+         <strong>
+          إكمال الدورات:
+         </strong>
+         78% من الطلاب أكملوا جميع الدورات هذا الفصل.
+        </li>
+        <li>
+         <strong>
+          المشاكل التقنية:
+         </strong>
+         2% من المشاكل تم حلها خلال 24 ساعة.
+        </li>
+       </ul>
+      </div>
+     </article>
+     <!-- Timetable Management Interface -->
+     <article aria-label="واجهة إدارة الجدول الدراسي" class="bg-gray-50 rounded-lg p-6 shadow-inner" id="timetable-management">
+      <h3 class="text-2xl font-semibold mb-6 text-blue-800">
+       إدارة الجدول الدراسي
+      </h3>
+      <form aria-atomic="true" aria-live="polite" class="space-y-6">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="class-day">
+         يوم الأسبوع
+        </label>
+        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="class-day" name="class-day" required="">
+         <option selected="" value="Monday">
+          الإثنين
+         </option>
+         <option value="Tuesday">
+          الثلاثاء
+         </option>
+         <option value="Wednesday">
+          الأربعاء
+         </option>
+         <option value="Thursday">
+          الخميس
+         </option>
+         <option value="Friday">
+          الجمعة
+         </option>
+        </select>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="class-time">
+         الوقت
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="class-time" name="class-time" placeholder="مثال: 8:00 - 9:30 ص" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="class-course">
+         الدورة
+        </label>
+        <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="class-course" name="class-course" placeholder="اسم الدورة" required="" type="text"/>
+       </div>
+       <button class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" type="submit">
+        إضافة / تحديث الجدول
+       </button>
+      </form>
+      <div class="mt-6">
+       <h4 class="text-xl font-semibold mb-3 text-blue-700">
+        الجدول الحالي
+       </h4>
+       <div class="overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+        <table class="min-w-full bg-white text-gray-700">
+         <thead class="bg-blue-100 text-blue-800 font-semibold">
+          <tr>
+           <th class="py-2 px-4 border-l border-blue-200">
+            اليوم
+           </th>
+           <th class="py-2 px-4 border-l border-blue-200">
+            الوقت
+           </th>
+           <th class="py-2 px-4 border-blue-200">
+            الدورة
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="border-t border-blue-200 hover:bg-blue-50">
+           <td class="py-2 px-4 border-l border-blue-200">
+            الإثنين
+           </td>
+           <td class="py-2 px-4 border-l border-blue-200">
+            8:00 - 9:30 ص
+           </td>
+           <td class="py-2 px-4">
+            الأحياء
+           </td>
+          </tr>
+          <tr class="border-t border-blue-200 hover:bg-blue-50 bg-blue-50">
+           <td class="py-2 px-4 border-l border-blue-200">
+            الثلاثاء
+           </td>
+           <td class="py-2 px-4 border-l border-blue-200">
+            10:00 - 11:30 ص
+           </td>
+           <td class="py-2 px-4">
+            علوم الحاسوب
+           </td>
+          </tr>
+          <tr class="border-t border-blue-200 hover:bg-blue-50">
+           <td class="py-2 px-4 border-l border-blue-200">
+            الأربعاء
+           </td>
+           <td class="py-2 px-4 border-l border-blue-200">
+            1:00 - 2:30 م
+           </td>
+           <td class="py-2 px-4">
+            الفيزياء
+           </td>
+          </tr>
+          <tr class="border-t border-blue-200 hover:bg-blue-50 bg-blue-50">
+           <td class="py-2 px-4 border-l border-blue-200">
+            الخميس
+           </td>
+           <td class="py-2 px-4 border-l border-blue-200">
+            3:00 - 4:30 م
+           </td>
+           <td class="py-2 px-4">
+            الفن
+           </td>
+          </tr>
+          <tr class="border-t border-blue-200 hover:bg-blue-50">
+           <td class="py-2 px-4 border-l border-blue-200">
+            الجمعة
+           </td>
+           <td class="py-2 px-4 border-l border-blue-200">
+            8:00 - 9:30 ص
+           </td>
+           <td class="py-2 px-4">
+            التاريخ
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </div>
+     </article>
+    </section>
+    <!-- Additional Interfaces -->
+    <section aria-label="واجهة المساعدة والدعم الفني" class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6" id="help">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      المساعدة والدعم الفني
+     </h2>
+     <div class="space-y-6">
+      <article>
+       <h3 class="text-2xl font-semibold mb-3 text-blue-800">
+        الأسئلة الشائعة
+       </h3>
+       <dl class="space-y-4 text-gray-700">
+        <div>
+         <dt class="font-semibold">
+          كيف يمكنني إعادة تعيين كلمة المرور؟
+         </dt>
+         <dd class="ml-4 mr-0">
+          اذهب إلى صفحة تسجيل الدخول وانقر على "نسيت كلمة المرور" لتلقي تعليمات إعادة التعيين عبر البريد الإلكتروني.
+         </dd>
+        </div>
+        <div>
+         <dt class="font-semibold">
+          كيف أقدم الواجبات؟
+         </dt>
+         <dd class="ml-4 mr-0">
+          انتقل إلى قسم الواجبات، اختر الواجب، وارفع ملفك قبل تاريخ التسليم.
+         </dd>
+        </div>
+        <div>
+         <dt class="font-semibold">
+          كيف أتواصل مع مدرسي؟
+         </dt>
+         <dd class="ml-4 mr-0">
+          استخدم واجهة التواصل للدردشة أو النشر في المنتديات للوصول إلى المدرسين.
+         </dd>
+        </div>
+        <div>
+         <dt class="font-semibold">
+          ما هي المتصفحات المدعومة؟
+         </dt>
+         <dd class="ml-4 mr-0">
+          يدعم التطبيق أحدث إصدارات Chrome وFirefox وEdge وSafari.
+         </dd>
+        </div>
+        <div>
+         <dt class="font-semibold">
+          من أتواصل معه للمشاكل التقنية؟
+         </dt>
+         <dd class="ml-4 mr-0">
+          استخدم نموذج الاتصال أدناه أو أرسل بريدًا إلى support@elearn.com للمساعدة.
+         </dd>
+        </div>
+       </dl>
+      </article>
+      <article>
+       <h3 class="text-2xl font-semibold mb-3 text-blue-800">
+        الاتصال بالدعم الفني
+       </h3>
+       <form aria-atomic="true" aria-live="polite" class="space-y-4">
+        <div>
+         <label class="block text-sm font-medium text-gray-700" for="support-name">
+          الاسم
+         </label>
+         <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="support-name" name="support-name" placeholder="اسمك الكامل" required="" type="text"/>
+        </div>
+        <div>
+         <label class="block text-sm font-medium text-gray-700" for="support-email">
+          البريد الإلكتروني
+         </label>
+         <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="support-email" name="support-email" placeholder="you@example.com" required="" type="email"/>
+        </div>
+        <div>
+         <label class="block text-sm font-medium text-gray-700" for="support-message">
+          الرسالة
+         </label>
+         <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="support-message" name="support-message" placeholder="صف مشكلتك أو سؤالك" required="" rows="4"></textarea>
+        </div>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+         إرسال الرسالة
+        </button>
+       </form>
+      </article>
+     </div>
+    </section>
+    <section aria-label="واجهة الإعدادات" class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6" id="settings">
+     <h2 class="text-3xl font-semibold text-blue-700 mb-6">
+      الإعدادات
+     </h2>
+     <form aria-atomic="true" aria-live="polite" class="space-y-6">
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="language">
+        اللغة
+       </label>
+       <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" id="language" name="language">
+        <option selected="" value="ar">
+         العربية
+        </option>
+        <option value="en">
+         الإنجليزية
+        </option>
+        <option value="es">
+         الإسبانية
+        </option>
+        <option value="fr">
+         الفرنسية
+        </option>
+        <option value="de">
+         الألمانية
+        </option>
+       </select>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700" for="notifications">
+        الإشعارات
+       </label>
+       <div class="mt-2 space-y-2">
+        <label class="inline-flex items-center space-x-2 space-x-reverse">
+         <input checked="" class="form-checkbox text-blue-600" id="notif-email" name="notif-email" type="checkbox"/>
+         <span>
+          إشعارات البريد الإلكتروني
+         </span>
+        </label>
+        <label class="inline-flex items-center space-x-2 space-x-reverse">
+         <input class="form-checkbox text-blue-600" id="notif-sms" name="notif-sms" type="checkbox"/>
+         <span>
+          إشعارات الرسائل النصية
+         </span>
+        </label>
+        <label class="inline-flex items-center space-x-2 space-x-reverse">
+         <input checked="" class="form-checkbox text-blue-600" id="notif-push" name="notif-push" type="checkbox"/>
+         <span>
+          إشعارات الدفع
+         </span>
+        </label>
+       </div>
+      </div>
+      <button class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" type="submit">
+       حفظ الإعدادات
+      </button>
+     </form>
+    </section>
+   </main>
+  </div>
+  <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+    © 2024 نظام إدارة التعلم الإلكتروني. جميع الحقوق محفوظة.
+   </div>
+  </footer>
+  <script>
+   // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Login / Registration tab toggle
+    const loginTab = document.getElementById('login-tab');
+    const registerTab = document.getElementById('register-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('bg-blue-600', 'text-white');
+      loginTab.classList.remove('bg-gray-200', 'text-gray-700');
+      loginTab.setAttribute('aria-selected', 'true');
+
+      registerTab.classList.remove('bg-blue-600', 'text-white');
+      registerTab.classList.add('bg-gray-200', 'text-gray-700');
+      registerTab.setAttribute('aria-selected', 'false');
+
+      loginForm.classList.remove('hidden');
+      registerForm.classList.add('hidden');
+    });
+
+    registerTab.addEventListener('click', () => {
+      registerTab.classList.add('bg-blue-600', 'text-white');
+      registerTab.classList.remove('bg-gray-200', 'text-gray-700');
+      registerTab.setAttribute('aria-selected', 'true');
+
+      loginTab.classList.remove('bg-blue-600', 'text-white');
+      loginTab.classList.add('bg-gray-200', 'text-gray-700');
+      loginTab.setAttribute('aria-selected', 'false');
+
+      registerForm.classList.remove('hidden');
+      loginForm.classList.add('hidden');
+    });
+
+    // Educational Content Interface - lesson selection and display
+    const lessonButtons = document.querySelectorAll('.lesson-item');
+    const lessonTitle = document.getElementById('lesson-title');
+    const lessonContent = document.getElementById('lesson-content');
+    const lessonNotes = document.getElementById('lesson-notes');
+    const saveNotesBtn = document.getElementById('save-notes');
+
+    let currentLessonKey = null;
+
+    lessonButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const type = button.getAttribute('data-type');
+        const title = button.getAttribute('data-title');
+        const content = button.getAttribute('data-content');
+
+        lessonTitle.textContent = title;
+
+        // Clear previous content
+        lessonContent.innerHTML = '';
+
+        if (type === 'text') {
+          const p = document.createElement('p');
+          p.textContent = content;
+          p.className = 'text-gray-700 whitespace-pre-wrap';
+          lessonContent.appendChild(p);
+        } else if (type === 'video') {
+          const video = document.createElement('video');
+          video.controls = true;
+          video.className = 'w-full rounded-md';
+          const source = document.createElement('source');
+          source.src = content;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          lessonContent.appendChild(video);
+        } else if (type === 'audio') {
+          const audio = document.createElement('audio');
+          audio.controls = true;
+          audio.className = 'w-full rounded-md';
+          const source = document.createElement('source');
+          source.src = content;
+          source.type = 'audio/mpeg';
+          audio.appendChild(source);
+          lessonContent.appendChild(audio);
+        } else if (type === 'file') {
+          const link = document.createElement('a');
+          link.href = content;
+          link.textContent = 'تحميل الملف';
+          link.className = 'text-blue-600 hover:underline';
+          lessonContent.appendChild(link);
+        }
+
+        // Load saved notes from localStorage
+        currentLessonKey = `notes_${title.replace(/\s+/g, '_').toLowerCase()}`;
+        const savedNotes = localStorage.getItem(currentLessonKey);
+        lessonNotes.value = savedNotes || '';
+      });
+    });
+
+    saveNotesBtn.addEventListener('click', () => {
+      if (!currentLessonKey) {
+        alert('يرجى اختيار درس أولاً.');
+        return;
+      }
+      localStorage.setItem(currentLessonKey, lessonNotes.value);
+      alert('تم حفظ الملاحظات!');
+    });
+
+    // Communication Interface - Chat with Instructor
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatWindow = document.getElementById('chat-window');
+
+    chatForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'mb-3 text-left';
+      const p = document.createElement('p');
+      p.className = 'text-sm text-blue-700';
+      p.innerHTML = `<strong>أنت:</strong> ${message}`;
+      messageDiv.appendChild(p);
+      chatWindow.appendChild(messageDiv);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+      chatInput.value = '';
+    });
+
+    // Communication Interface - Forums
+    const forumForm = document.getElementById('forum-form');
+    const forumInput = document.getElementById('forum-input');
+    const forumPosts = document.getElementById('forum-posts');
+
+    forumForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const post = forumInput.value.trim();
+      if (!post) return;
+
+      const article = document.createElement('article');
+      article.className = 'mb-4 border-b border-gray-200 pb-3';
+      const h4 = document.createElement('h4');
+      h4.className = 'font-semibold text-gray-900';
+      h4.textContent = 'منشور جديد';
+      const p = document.createElement('p');
+      p.className = 'text-gray-700 mb-1';
+      p.textContent = post;
+      const date = new Date();
+      const dateString = date.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+      const small = document.createElement('p');
+      small.className = 'text-sm text-gray-500';
+      small.textContent = `نشر بواسطة أنت في ${dateString}`;
+
+      article.appendChild(h4);
+      article.appendChild(p);
+      article.appendChild(small);
+
+      forumPosts.prepend(article);
+      forumInput.value = '';
+    });
+
+    // Faculty Communication Interface - Chat with Students
+    const facultyChatForm = document.getElementById('faculty-chat-form');
+    const facultyChatInput = document.getElementById('faculty-chat-input');
+    const facultyChatWindow = document.querySelector('#faculty-communication > div[role="log"]');
+
+    facultyChatForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const message = facultyChatInput.value.trim();
+      if (!message) return;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'mb-3 text-left';
+      const p = document.createElement('p');
+      p.className = 'text-sm text-blue-700';
+      p.innerHTML = `<strong>عضو هيئة التدريس:</strong> ${message}`;
+      messageDiv.appendChild(p);
+      facultyChatWindow.appendChild(messageDiv);
+      facultyChatWindow.scrollTop = facultyChatWindow.scrollHeight;
+      facultyChatInput.value = '';
+    });
+  </script>
+ </body>
+</html>
