@@ -1,0 +1,526 @@
+<html dir="rtl" lang="ar">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   منصة جامعة إلكترونية - النظام الشامل
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+    font-family: 'Cairo', sans-serif;
+  }
+  </style>
+ </head>
+ <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 min-h-screen flex flex-col">
+  <!-- Registration Page -->
+  <section class="min-h-screen flex flex-col justify-center items-center p-6 bg-white dark:bg-gray-900 transition-colors duration-300" id="registrationPage">
+   <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-bold mb-6 text-[#003049] dark:text-[#669bbc] text-center">
+     إنشاء حساب جديد
+    </h2>
+    <form class="space-y-6" id="registrationForm" novalidate="">
+     <div>
+      <label class="block mb-1 font-semibold" for="regName">
+       الاسم الكامل
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="regName" name="regName" placeholder="أدخل اسمك الكامل" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block mb-1 font-semibold" for="regEmail">
+       البريد الإلكتروني
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="regEmail" name="regEmail" placeholder="example@domain.com" required="" type="email"/>
+     </div>
+     <div>
+      <label class="block mb-1 font-semibold" for="regStudentId">
+       الرقم الجامعي
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="regStudentId" name="regStudentId" placeholder="مثال: 20231234" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block mb-1 font-semibold" for="regPassword">
+       كلمة المرور
+      </label>
+      <div class="relative">
+       <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="regPassword" name="regPassword" placeholder="أدخل كلمة المرور" required="" type="password"/>
+       <button class="absolute top-1/2 left-3 -translate-y-1/2 text-gray-500 dark:text-gray-400 focus:outline-none" id="toggleRegPassword" type="button">
+        <i class="fas fa-eye">
+        </i>
+       </button>
+      </div>
+     </div>
+     <div>
+      <label class="block mb-1 font-semibold" for="regPasswordConfirm">
+       تأكيد كلمة المرور
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="regPasswordConfirm" name="regPasswordConfirm" placeholder="أعد إدخال كلمة المرور" required="" type="password"/>
+     </div>
+     <button class="w-full bg-[#003049] hover:bg-[#002437] dark:bg-[#669bbc] dark:hover:bg-[#557a9a] text-white font-bold py-3 rounded transition-colors" type="submit">
+      إنشاء الحساب
+     </button>
+     <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      لديك حساب؟
+      <a class="text-[#669bbc] hover:underline cursor-pointer" href="#" id="toLoginFromReg">
+       تسجيل الدخول
+      </a>
+     </p>
+    </form>
+   </div>
+  </section>
+  <!-- Login Page -->
+  <section class="min-h-screen flex flex-col justify-center items-center p-6 bg-white dark:bg-gray-900 transition-colors duration-300 hidden" id="loginPage">
+   <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-bold mb-6 text-[#003049] dark:text-[#669bbc] text-center">
+     تسجيل الدخول
+    </h2>
+    <form class="space-y-6" id="loginForm" novalidate="">
+     <div>
+      <label class="block mb-1 font-semibold" for="loginEmail">
+       البريد الإلكتروني أو اسم المستخدم
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="loginEmail" name="loginEmail" placeholder="أدخل البريد الإلكتروني أو اسم المستخدم" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block mb-1 font-semibold" for="loginPassword">
+       كلمة المرور
+      </label>
+      <div class="relative">
+       <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="loginPassword" name="loginPassword" placeholder="أدخل كلمة المرور" required="" type="password"/>
+       <button class="absolute top-1/2 left-3 -translate-y-1/2 text-gray-500 dark:text-gray-400 focus:outline-none" id="toggleLoginPassword" type="button">
+        <i class="fas fa-eye">
+        </i>
+       </button>
+      </div>
+     </div>
+     <div class="flex items-center justify-between">
+      <label class="inline-flex items-center space-x-2 rtl:space-x-reverse">
+       <input class="form-checkbox h-5 w-5 text-[#003049] dark:text-[#669bbc]" id="rememberMe" name="rememberMe" type="checkbox"/>
+       <span>
+        تذكرني
+       </span>
+      </label>
+      <a class="text-[#669bbc] hover:underline" href="#" id="forgotPasswordLink">
+       هل نسيت كلمة المرور؟
+      </a>
+     </div>
+     <button class="w-full bg-[#003049] hover:bg-[#002437] dark:bg-[#669bbc] dark:hover:bg-[#557a9a] text-white font-bold py-3 rounded transition-colors" type="submit">
+      تسجيل الدخول
+     </button>
+     <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      ليس لديك حساب؟
+      <a class="text-[#669bbc] hover:underline cursor-pointer" href="#" id="toRegisterFromLogin">
+       إنشاء حساب جديد
+      </a>
+     </p>
+     <div class="mt-4 flex justify-center space-x-4 rtl:space-x-reverse">
+      <button class="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 transition-colors" type="button">
+       <i class="fab fa-google text-red-600">
+       </i>
+       <span>
+        تسجيل الدخول عبر Google
+       </span>
+      </button>
+      <button class="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 transition-colors" type="button">
+       <i class="fab fa-facebook-f text-blue-600">
+       </i>
+       <span>
+        تسجيل الدخول عبر Facebook
+       </span>
+      </button>
+     </div>
+    </form>
+   </div>
+  </section>
+  <!-- Password Recovery Page -->
+  <section class="min-h-screen flex flex-col justify-center items-center p-6 bg-white dark:bg-gray-900 transition-colors duration-300 hidden" id="passwordRecoveryPage">
+   <div class="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-3xl font-bold mb-6 text-[#003049] dark:text-[#669bbc] text-center">
+     استعادة كلمة المرور
+    </h2>
+    <form class="space-y-6" id="passwordRecoveryForm" novalidate="">
+     <div>
+      <label class="block mb-1 font-semibold" for="recoveryEmail">
+       البريد الإلكتروني المسجل
+      </label>
+      <input class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#003049] dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#669bbc]" id="recoveryEmail" name="recoveryEmail" placeholder="أدخل بريدك الإلكتروني" required="" type="email"/>
+     </div>
+     <button class="w-full bg-[#003049] hover:bg-[#002437] dark:bg-[#669bbc] dark:hover:bg-[#557a9a] text-white font-bold py-3 rounded transition-colors" type="submit">
+      إرسال رابط إعادة التعيين
+     </button>
+     <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      تذكرت كلمة المرور؟
+      <a class="text-[#669bbc] hover:underline cursor-pointer" href="#" id="toLoginFromRecovery">
+       تسجيل الدخول
+      </a>
+     </p>
+    </form>
+   </div>
+  </section>
+  <!-- Main App Container -->
+  <div class="hidden flex flex-col min-h-screen" id="appContainer">
+   <!-- Header -->
+   <header class="bg-[#003049] dark:bg-gray-800 text-white flex items-center justify-between p-4 md:px-8 fixed top-0 right-0 left-0 z-50">
+    <button aria-label="إظهار/إخفاء القائمة الجانبية" class="text-white text-2xl focus:outline-none" id="sidebarToggle">
+     <i class="fas fa-bars">
+     </i>
+    </button>
+    <h1 class="text-lg font-bold" id="headerTitle">
+     لوحة تحكم الطلاب
+    </h1>
+    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+     <button aria-label="تبديل الوضع الليلي" class="focus:outline-none text-white text-xl" id="darkModeToggle">
+      <i class="fas fa-moon">
+      </i>
+     </button>
+     <div class="relative group">
+      <img alt="صورة شخصية مستخدم" class="rounded-full w-10 h-10 object-cover cursor-pointer" height="40" src="https://storage.googleapis.com/a1aa/image/b6eac19a-53d1-40a3-cb59-2af77e330915.jpg" width="40"/>
+      <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-50">
+       <a class="block px-4 py-2 hover:bg-[#669bbc] dark:hover:bg-gray-700 cursor-pointer" id="profileMenuLink">
+        الملف الشخصي
+       </a>
+       <button class="w-full text-right px-4 py-2 hover:bg-red-600 text-red-600 dark:text-red-400 dark:hover:bg-red-700" id="logoutBtn">
+        تسجيل الخروج
+       </button>
+      </div>
+     </div>
+    </div>
+   </header>
+   <!-- Sidebar -->
+   <nav class="fixed top-16 bottom-0 right-0 w-64 bg-[#003049] dark:bg-gray-800 text-white transform translate-x-full md:translate-x-0 transition-transform duration-300 z-40 flex flex-col" id="sidebar">
+    <div class="flex items-center justify-center h-16 border-b border-[#669bbc] dark:border-gray-700">
+     <img alt="شعار منصة جامعة إلكترونية" class="inline-block" height="40" src="https://storage.googleapis.com/a1aa/image/e11fcb28-ab48-49ce-d03e-26912698d704.jpg" width="40"/>
+     <span class="mr-2 font-bold text-xl">
+      UniverBoard
+     </span>
+    </div>
+    <ul class="flex-1 overflow-y-auto p-4 space-y-2" id="sidebarMenu">
+     <!-- Dynamic menu items will be inserted here -->
+    </ul>
+   </nav>
+   <div class="fixed inset-0 bg-black bg-opacity-50 hidden z-30 md:hidden" id="overlay">
+   </div>
+   <!-- Main content -->
+   <main class="flex-1 overflow-auto p-6 md:p-10 max-w-7xl mx-auto mt-16" id="mainContent">
+    <!-- Dynamic content will be inserted here -->
+   </main>
+  </div>
+  <script>
+   // Pages content for each system and subpages with empty data placeholders
+  const systemsData = {
+    student: {
+      title: "لوحة تحكم الطلاب",
+      menu: [
+        { id: "dashboard", label: "لوحة التحكم" },
+        { id: "profile", label: "الملف الشخصي" },
+        { id: "availableCourses", label: "المقررات المتاحة" },
+        { id: "myCourses", label: "مقرراتي" },
+        { id: "courseDetails", label: "تفاصيل المقرر" },
+        { id: "schedule", label: "الجدول الدراسي" },
+        { id: "assignments", label: "الواجبات" },
+        { id: "assignmentDetails", label: "تفاصيل الواجب" },
+        { id: "quizzes", label: "الاختبارات" },
+        { id: "quizTaking", label: "أداء الاختبار" },
+        { id: "grades", label: "الدرجات والتقدم" },
+        { id: "messages", label: "الرسائل والمناقشات" },
+        { id: "notifications", label: "الإشعارات" },
+        { id: "settings", label: "الإعدادات" },
+      ],
+      pages: {
+        dashboard: `<h2 class="text-3xl font-bold mb-4">لوحة التحكم الرئيسية</h2><p>لا توجد بيانات حالياً.</p>`,
+        profile: `<h2 class="text-3xl font-bold mb-4">الملف الشخصي</h2><p>لا توجد بيانات حالياً.</p>`,
+        availableCourses: `<h2 class="text-3xl font-bold mb-4">المقررات المتاحة</h2><p>لا توجد مقررات متاحة حالياً.</p>`,
+        myCourses: `<h2 class="text-3xl font-bold mb-4">مقرراتي</h2><p>لم تسجل في أي مقررات بعد.</p>`,
+        courseDetails: `<h2 class="text-3xl font-bold mb-4">تفاصيل المقرر</h2><p>لا توجد تفاصيل لعرضها.</p>`,
+        schedule: `<h2 class="text-3xl font-bold mb-4">الجدول الدراسي</h2><p>لا يوجد جدول دراسي حالياً.</p>`,
+        assignments: `<h2 class="text-3xl font-bold mb-4">الواجبات</h2><p>لا توجد واجبات حالياً.</p>`,
+        assignmentDetails: `<h2 class="text-3xl font-bold mb-4">تفاصيل الواجب وتسليمه</h2><p>لا توجد تفاصيل لعرضها.</p>`,
+        quizzes: `<h2 class="text-3xl font-bold mb-4">الاختبارات</h2><p>لا توجد اختبارات مجدولة حالياً.</p>`,
+        quizTaking: `<h2 class="text-3xl font-bold mb-4">أداء الاختبار</h2><p>لا يوجد اختبار نشط حالياً.</p>`,
+        grades: `<h2 class="text-3xl font-bold mb-4">الدرجات والتقدم الأكاديمي</h2><p>لا توجد درجات لعرضها.</p>`,
+        messages: `<h2 class="text-3xl font-bold mb-4">الرسائل والمناقشات</h2><p>لا توجد رسائل حالياً.</p>`,
+        notifications: `<h2 class="text-3xl font-bold mb-4">الإشعارات</h2><p>لا توجد إشعارات جديدة.</p>`,
+        settings: `<h2 class="text-3xl font-bold mb-4">الإعدادات</h2><p>لا توجد إعدادات مخصصة حالياً.</p>`,
+      }
+    },
+    teacher: {
+      title: "لوحة تحكم الأساتذة",
+      menu: [
+        { id: "dashboard", label: "لوحة التحكم" },
+        { id: "profile", label: "الملف الشخصي" },
+        { id: "manageCourses", label: "إدارة المقررات" },
+        { id: "courseDetails", label: "تفاصيل المقرر" },
+        { id: "manageAssignments", label: "إدارة الواجبات" },
+        { id: "gradeSubmissions", label: "تقييم الواجبات" },
+        { id: "manageQuizzes", label: "إدارة الاختبارات" },
+        { id: "gradeQuizAnswers", label: "تقييم الاختبارات" },
+        { id: "gradebook", label: "دفتر الدرجات" },
+        { id: "messages", label: "التواصل والمناقشات" },
+        { id: "notifications", label: "الإشعارات" },
+        { id: "settings", label: "الإعدادات" },
+      ],
+      pages: {
+        dashboard: `<h2 class="text-3xl font-bold mb-4">لوحة تحكم الأستاذ</h2><p>لا توجد بيانات حالياً.</p>`,
+        profile: `<h2 class="text-3xl font-bold mb-4">الملف الشخصي للأستاذ</h2><p>لا توجد بيانات حالياً.</p>`,
+        manageCourses: `<h2 class="text-3xl font-bold mb-4">إدارة المقررات الدراسية</h2><p>لا توجد مقررات لإدارتها.</p>`,
+        courseDetails: `<h2 class="text-3xl font-bold mb-4">تفاصيل المقرر وإدارة المحتوى</h2><p>لا توجد تفاصيل لعرضها.</p>`,
+        manageAssignments: `<h2 class="text-3xl font-bold mb-4">إنشاء وتعديل الواجبات</h2><p>لا توجد واجبات لإنشائها أو تعديلها.</p>`,
+        gradeSubmissions: `<h2 class="text-3xl font-bold mb-4">تقييم تسليمات الواجبات</h2><p>لا توجد تسليمات لتقييمها.</p>`,
+        manageQuizzes: `<h2 class="text-3xl font-bold mb-4">إنشاء وتعديل الاختبارات</h2><p>لا توجد اختبارات لإدارتها.</p>`,
+        gradeQuizAnswers: `<h2 class="text-3xl font-bold mb-4">تقييم إجابات الاختبارات</h2><p>لا توجد إجابات لتقييمها.</p>`,
+        gradebook: `<h2 class="text-3xl font-bold mb-4">دفتر الدرجات</h2><p>لا توجد درجات لعرضها أو تعديلها.</p>`,
+        messages: `<h2 class="text-3xl font-bold mb-4">التواصل والمناقشات</h2><p>لا توجد رسائل حالياً.</p>`,
+        notifications: `<h2 class="text-3xl font-bold mb-4">الإشعارات</h2><p>لا توجد إشعارات جديدة.</p>`,
+        settings: `<h2 class="text-3xl font-bold mb-4">الإعدادات</h2><p>لا توجد إعدادات مخصصة حالياً.</p>`,
+      }
+    },
+    college: {
+      title: "لوحة تحكم الكليات",
+      menu: [
+        { id: "dashboard", label: "لوحة التحكم" },
+        { id: "managePrograms", label: "إدارة البرامج الأكاديمية" },
+        { id: "manageCourses", label: "إدارة المقررات" },
+        { id: "manageEnrollments", label: "إدارة تسجيل الطلاب" },
+        { id: "manageAccounts", label: "إدارة حسابات الطلاب والأساتذة" },
+        { id: "manageSchedules", label: "إدارة الجداول الدراسية" },
+        { id: "reports", label: "التقارير والإحصائيات" },
+        { id: "announcements", label: "الإعلانات والتعاميم" },
+        { id: "settings", label: "الإعدادات العامة" },
+      ],
+      pages: {
+        dashboard: `<h2 class="text-3xl font-bold mb-4">لوحة تحكم مسؤول الكلية</h2><p>لا توجد بيانات حالياً.</p>`,
+        managePrograms: `<h2 class="text-3xl font-bold mb-4">إدارة البرامج الأكاديمية</h2><p>لا توجد برامج لإدارتها.</p>`,
+        manageCourses: `<h2 class="text-3xl font-bold mb-4">إدارة المقررات الدراسية</h2><p>لا توجد مقررات لإدارتها.</p>`,
+        manageEnrollments: `<h2 class="text-3xl font-bold mb-4">إدارة تسجيل الطلاب</h2><p>لا توجد طلبات تسجيل حالياً.</p>`,
+        manageAccounts: `<h2 class="text-3xl font-bold mb-4">إدارة حسابات الطلاب والأساتذة</h2><p>لا توجد حسابات لعرضها أو تعديلها.</p>`,
+        manageSchedules: `<h2 class="text-3xl font-bold mb-4">إدارة الجداول الدراسية</h2><p>لا توجد جداول دراسية حالياً.</p>`,
+        reports: `<h2 class="text-3xl font-bold mb-4">التقارير والإحصائيات</h2><p>لا توجد تقارير لعرضها.</p>`,
+        announcements: `<h2 class="text-3xl font-bold mb-4">الإعلانات والتعاميم</h2><p>لا توجد إعلانات حالياً.</p>`,
+        settings: `<h2 class="text-3xl font-bold mb-4">الإعدادات العامة للنظام</h2><p>لا توجد إعدادات مخصصة حالياً.</p>`,
+      }
+    },
+    admin: {
+      title: "لوحة تحكم الإدارة العليا",
+      menu: [
+        { id: "dashboard", label: "لوحة التحكم" },
+        { id: "manageUsers", label: "إدارة المستخدمين" },
+        { id: "manageColleges", label: "إدارة الكليات والأقسام" },
+        { id: "managePrograms", label: "إدارة البرامج الأكاديمية" },
+        { id: "manageCourses", label: "إدارة كتالوج المقررات" },
+        { id: "systemSettings", label: "إعدادات النظام العامة" },
+        { id: "auditLogs", label: "سجلات التدقيق والنظام" },
+        { id: "advancedReports", label: "التقارير المتقدمة" },
+        { id: "globalAnnouncements", label: "الإعلانات العامة" },
+      ],
+      pages: {
+        dashboard: `<h2 class="text-3xl font-bold mb-4">لوحة تحكم المسؤول الأعلى</h2><p>لا توجد بيانات حالياً.</p>`,
+        manageUsers: `<h2 class="text-3xl font-bold mb-4">إدارة المستخدمين</h2><p>لا توجد مستخدمين لعرضهم أو تعديلهم.</p>`,
+        manageColleges: `<h2 class="text-3xl font-bold mb-4">إدارة الكليات والأقسام</h2><p>لا توجد كليات أو أقسام لعرضها أو تعديلها.</p>`,
+        managePrograms: `<h2 class="text-3xl font-bold mb-4">إدارة البرامج الأكاديمية</h2><p>لا توجد برامج لإدارتها.</p>`,
+        manageCourses: `<h2 class="text-3xl font-bold mb-4">إدارة كتالوج المقررات</h2><p>لا توجد مقررات لإدارتها.</p>`,
+        systemSettings: `<h2 class="text-3xl font-bold mb-4">إعدادات النظام العامة</h2><p>لا توجد إعدادات مخصصة حالياً.</p>`,
+        auditLogs: `<h2 class="text-3xl font-bold mb-4">سجلات التدقيق والنظام</h2><p>لا توجد سجلات لعرضها.</p>`,
+        advancedReports: `<h2 class="text-3xl font-bold mb-4">التقارير المتقدمة</h2><p>لا توجد تقارير لعرضها.</p>`,
+        globalAnnouncements: `<h2 class="text-3xl font-bold mb-4">الإعلانات العامة للنظام</h2><p>لا توجد إعلانات حالياً.</p>`,
+      }
+    }
+  };
+
+  // Elements
+  const registrationPage = document.getElementById('registrationPage');
+  const loginPage = document.getElementById('loginPage');
+  const passwordRecoveryPage = document.getElementById('passwordRecoveryPage');
+  const appContainer = document.getElementById('appContainer');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const overlay = document.getElementById('overlay');
+  const headerTitle = document.getElementById('headerTitle');
+  const sidebarMenu = document.getElementById('sidebarMenu');
+  const mainContent = document.getElementById('mainContent');
+
+  // Show/hide pages
+  function showPage(pageId) {
+    registrationPage.classList.add('hidden');
+    loginPage.classList.add('hidden');
+    passwordRecoveryPage.classList.add('hidden');
+    appContainer.classList.add('hidden');
+    if(pageId === 'registration') registrationPage.classList.remove('hidden');
+    else if(pageId === 'login') loginPage.classList.remove('hidden');
+    else if(pageId === 'passwordRecovery') passwordRecoveryPage.classList.remove('hidden');
+    else if(pageId === 'app') appContainer.classList.remove('hidden');
+  }
+
+  // Initialize to login page
+  showPage('login');
+
+  // Password toggle handlers
+  function setupPasswordToggle(toggleBtnId, inputId) {
+    const toggleBtn = document.getElementById(toggleBtnId);
+    const input = document.getElementById(inputId);
+    toggleBtn.addEventListener('click', () => {
+      if(input.type === 'password') {
+        input.type = 'text';
+        toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      } else {
+        input.type = 'password';
+        toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+      }
+    });
+  }
+  setupPasswordToggle('toggleLoginPassword', 'loginPassword');
+  setupPasswordToggle('toggleRegPassword', 'regPassword');
+
+  // Navigation links between login, registration, recovery
+  document.getElementById('toRegisterFromLogin').addEventListener('click', e => {
+    e.preventDefault();
+    showPage('registration');
+  });
+  document.getElementById('toLoginFromReg').addEventListener('click', e => {
+    e.preventDefault();
+    showPage('login');
+  });
+  document.getElementById('forgotPasswordLink').addEventListener('click', e => {
+    e.preventDefault();
+    showPage('passwordRecovery');
+  });
+  document.getElementById('toLoginFromRecovery').addEventListener('click', e => {
+    e.preventDefault();
+    showPage('login');
+  });
+
+  // Sidebar toggle
+  function openSidebar() {
+    sidebar.classList.remove('translate-x-full');
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    sidebar.classList.add('translate-x-full');
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+  sidebarToggle.addEventListener('click', () => {
+    if(sidebar.classList.contains('translate-x-full')) openSidebar();
+    else closeSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+
+  // Dark mode toggle
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  darkModeToggle.addEventListener('click', () => {
+    if(document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+  if(localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+
+  // Logout button
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    alert('تم تسجيل الخروج (محاكاة)');
+    showPage('login');
+  });
+
+  // Load system menu and content
+  let currentSystem = 'student';
+  let currentPage = 'dashboard';
+
+  function loadSystem(systemKey) {
+    currentSystem = systemKey;
+    headerTitle.textContent = systemsData[systemKey].title;
+    // Build sidebar menu
+    sidebarMenu.innerHTML = '';
+    systemsData[systemKey].menu.forEach(item => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className = 'flex items-center p-2 rounded hover:bg-[#669bbc] dark:hover:bg-gray-700 transition-colors w-full text-right text-white';
+      btn.textContent = item.label;
+      btn.dataset.page = item.id;
+      btn.addEventListener('click', () => {
+        loadPage(item.id);
+        closeSidebar();
+      });
+      li.appendChild(btn);
+      sidebarMenu.appendChild(li);
+    });
+    loadPage('dashboard');
+  }
+
+  function loadPage(pageId) {
+    currentPage = pageId;
+    // Highlight active menu item
+    [...sidebarMenu.querySelectorAll('button')].forEach(btn => {
+      if(btn.dataset.page === pageId) {
+        btn.classList.add('bg-[#003049]');
+      } else {
+        btn.classList.remove('bg-[#003049]');
+      }
+    });
+    // Load content
+    mainContent.innerHTML = systemsData[currentSystem].pages[pageId] || '<p>المحتوى غير متوفر.</p>';
+  }
+
+  // Initial load
+  showPage('app');
+  loadSystem(currentSystem);
+
+  // System selection buttons in sidebar
+  const systemButtons = [
+    { key: 'student', icon: 'fas fa-user-graduate', label: 'نظام الطلاب' },
+    { key: 'teacher', icon: 'fas fa-chalkboard-teacher', label: 'نظام الأساتذة والمعلمين' },
+    { key: 'college', icon: 'fas fa-university', label: 'نظام الكليات والجامعات' },
+    { key: 'admin', icon: 'fas fa-user-shield', label: 'نظام الإدارة العليا' },
+  ];
+
+  // Add system selection buttons above menu
+  const systemSelector = document.createElement('ul');
+  systemSelector.className = 'p-4 border-b border-[#669bbc] dark:border-gray-700 flex flex-col space-y-2';
+  systemButtons.forEach(sys => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'flex items-center p-2 rounded hover:bg-[#669bbc] dark:hover:bg-gray-700 transition-colors w-full text-right text-white font-bold';
+    btn.innerHTML = `<i class="${sys.icon} ml-3"></i><span>${sys.label}</span>`;
+    btn.addEventListener('click', () => {
+      loadSystem(sys.key);
+      headerTitle.textContent = systemsData[sys.key].title;
+      closeSidebar();
+    });
+    li.appendChild(btn);
+    systemSelector.appendChild(li);
+  });
+  sidebar.insertBefore(systemSelector, sidebar.firstChild);
+
+  // Form submissions (dummy)
+  document.getElementById('registrationForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('تم إنشاء الحساب (محاكاة)');
+    showPage('login');
+  });
+  document.getElementById('loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('تم تسجيل الدخول (محاكاة)');
+    showPage('app');
+    loadSystem('student');
+  });
+  document.getElementById('passwordRecoveryForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('تم إرسال رابط إعادة تعيين كلمة المرور (محاكاة)');
+    showPage('login');
+  });
+
+  // Profile menu link
+  document.getElementById('profileMenuLink').addEventListener('click', () => {
+    loadPage('profile');
+    closeSidebar();
+  });
+  </script>
+ </body>
+</html>
